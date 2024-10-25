@@ -7,7 +7,7 @@ from tensorflow.keras.models import load_model
 import os
 
 # Load your model
-model = load_model('/Users/ayushivaghasiya/Desktop/DL_project/best_model_101class.hdf5')
+model = load_model('DL_project/best_model_101class.hdf5')
 
 # Define the target size for the images
 target_size = (200, 200)
