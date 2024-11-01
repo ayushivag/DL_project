@@ -1,7 +1,6 @@
-jupyter
-ipywidgets
-numpy
+streamlit
 tensorflow
-matplotlib
-seaborn
-scikit-learn
+numpy
+pandas
+requests
+gdown
