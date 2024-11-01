@@ -4,10 +4,18 @@ import pandas as pd
 import requests
 from tensorflow.keras.preprocessing import image
 from tensorflow.keras.models import load_model
+import gdown
 import os
 
-# Load your model
-model = load_model('/Users/ayushivaghasiya/Desktop/DL_project/best_model_101class.hdf5')
+# Google Drive file ID for the model
+file_id = '12NLlVgpNIqb67giUU3f9uqXeqOia3fwT'
+model_url = f'https://drive.google.com/uc?id={file_id}'
+
+# Download the model
+gdown.download(model_url, 'best_model_101class.hdf5', quiet=False)
+
+# Load the model
+model = load_model('best_model_101class.hdf5')
 
 # Define the target size for the images
 target_size = (200, 200)
@@ -75,8 +83,8 @@ if uploaded_file is not None:
     with open(img_path, "wb") as f:
         f.write(uploaded_file.getbuffer())
 
-    # Display the uploaded image with a smaller size
-    st.image(uploaded_file, caption='Uploaded Image', width=300)  # Adjust the width as needed
+    # Display the uploaded image
+    st.image(img_path, caption='Uploaded Image', use_column_width=True)
 
     # Load and preprocess the image
     img_array = load_and_preprocess_image(img_path)
@@ -126,5 +134,5 @@ if uploaded_file is not None:
         st.write(f"- Carbohydrates: {nutrition_info['carbohydrates']} g")
         st.write(f"- Vitamins: {nutrition_info['vitamins']} g")
 
-    # Optional: Clean up by removing the uploaded file
+    # Clean up by removing the uploaded file
     os.remove(img_path)
